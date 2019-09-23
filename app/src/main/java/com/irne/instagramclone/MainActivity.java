@@ -2,6 +2,7 @@ package com.irne.instagramclone;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     private TextView textView;
 
     private String allKickBoxers;
+
+    private Button button4;
 
 
     @Override
@@ -87,6 +90,20 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         textView = findViewById(R.id.textView);
         button3 = findViewById(R.id.button3);
 
+        button4 = findViewById(R.id.button);
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this,
+                        SignUpLoginActivity.class);
+                startActivity(intent);
+                FancyToast.makeText(MainActivity.this,"Activity Changed Successfully",
+                        Toast.LENGTH_LONG,FancyToast.SUCCESS,true).show();
+            }
+        });
+
       /*  button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,10 +136,13 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ParseQuery<ParseObject> parseobject = ParseQuery.getQuery("KickBoxer");
+                final ParseQuery<ParseObject> parseobject = ParseQuery.getQuery("KickBoxer");
                 parseobject.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
+
+                        //parseobject.whereGreaterThanOrEqualTo("punch_speed",100);
+                        //parseobject.setLimit(1);
 
                         if (e == null) {
 
